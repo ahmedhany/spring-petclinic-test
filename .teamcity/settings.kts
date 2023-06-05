@@ -48,23 +48,6 @@ object Build : BuildType({
             goals = "clean test"
             runnerArgs = "-Dmaven.test.failure.ignore=true"
         }
-        dockerCommand {
-            commandType = build {
-                source = file {
-                    path = ".devcontainer/Dockerfile"
-                }
-            }
-        }
-        gradle {
-            tasks = "clean build"
-            gradleWrapperPath = ""
-        }
-        dockerCompose {
-            file = "docker-compose.yml"
-        }
-        script {
-            scriptContent = "call mvnw.cmd"
-        }
     }
 
     triggers {
